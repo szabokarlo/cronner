@@ -17,6 +17,10 @@ My solution is quite simple, but a real process can require the following steps 
     * Insert the valid data
     * Sets the queue element as completed
 
+## Database
+
+The database is MySQL, and the following file describes the definitions of the tables: /database/init.sql 
+
 ## Install the Application
 
 Run this command from the directory in which you want to install the application.
