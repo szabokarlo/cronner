@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  cronner:
+    image: php:5.6-alpine
+    container_name: docker-alpine
+    build: .
+    working_dir: /var/www
+    command: php -S 0.0.0.0:8080 -t public
+    environment:
+      docker: "true"
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/var/www
+    links:
+      - docker-mysql
+
+  docker-mysql:
+      image: mysql
+      container_name: docker-mysql
+      environment:
+        MYSQL_ROOT_PASSWORD: securedPassw0rd
+      ports:
+          - "3308:3306"
+      volumes:
+          - ./database:/tmp/database
+      command: mysqld --init-file="/tmp/database/init.sql" --character-set-server=utf8 --collation-server=utf8_unicode_ci --default_authentication_plugin=mysql_native_password
