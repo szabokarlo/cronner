@@ -9,6 +9,7 @@ use Cronner\Import\Mapper\ProductMapper;
 use League\Csv\Modifier\MapIterator;
 use PHPUnit\Framework\TestCase;
 use PHPUnit_Framework_MockObject_MockObject;
+use Psr\Log\LoggerInterface;
 
 class ProductMapperTest extends TestCase
 {
@@ -57,7 +58,12 @@ class ProductMapperTest extends TestCase
 
         $this->mockIterator($products, $productsData);
 
-        $sut = new ProductMapper();
+        /** @var LoggerInterface|PHPUnit_Framework_MockObject_MockObject $logger */
+        $logger = $this->getMockBuilder(LoggerInterface::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $sut = new ProductMapper($logger);
 
         $expectedProductCollection = new ProductCollection();
         $expectedProductCollection->add(
@@ -138,7 +144,15 @@ class ProductMapperTest extends TestCase
 
         $this->mockIterator($products, $productsData);
 
-        $sut = new ProductMapper();
+        /** @var LoggerInterface|PHPUnit_Framework_MockObject_MockObject $logger */
+        $logger = $this->getMockBuilder(LoggerInterface::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $logger->expects($this->once())
+            ->method('warning');
+
+        $sut = new ProductMapper($logger);
 
         $expectedProductCollection = new ProductCollection();
         $expectedProductCollection->add(

@@ -8,6 +8,7 @@ use Cronner\Import\Domain\ProductCollection;
 use Exception;
 use InvalidArgumentException;
 use League\Csv\Modifier\MapIterator;
+use Psr\Log\LoggerInterface;
 
 class ProductMapper
 {
@@ -31,6 +32,17 @@ class ProductMapper
         self::KEY_URL,
     ];
 
+    /** @var LoggerInterface */
+    private $logger;
+
+    /**
+     * @param LoggerInterface $logger
+     */
+    public function __construct(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
+
     /**
      * @param Partner $partner
      * @param MapIterator $products
@@ -47,7 +59,8 @@ class ProductMapper
                     $this->toDomain($partner, $product)
                 );
             } catch (Exception $exception) {
-                //var_dump($exception->getMessage());
+                $this->logger->warning($exception->getMessage());
+
                 continue;
             }
         }

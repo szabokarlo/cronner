@@ -34,7 +34,7 @@ return function (ContainerBuilder $containerBuilder) {
                 $container->get(LoggerInterface::class),
                 new FileRepository(new DirectoryIterator(__DIR__ . '/../data/')),
                 new PartnerRepository($container->get(PDO::class)),
-                new CsvRepository(new ProductMapper()),
+                new CsvRepository(new ProductMapper($container->get(LoggerInterface::class))),
                 new ProductRepository(
                     $container->get(LoggerInterface::class),
                     $container->get(PDO::class)
