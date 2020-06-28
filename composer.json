@@ -1,5 +1,6 @@
 {
     "name": "szabokarlo/cronner",
+    "description": "Application for csv import cronner",
     "type": "project",
     "license": "MIT",
     "authors": [
