@@ -54,15 +54,22 @@ class ImportService
 
             /** @var File $file */
             foreach ($files->getIterator() as $file) {
-                $partner = $this->partnerRepository->get($file->getPartnerName(), $file->getPartnerCountryCode());
-
                 $filePath = $file->getPath();
 
                 $this->logger->info('Starting import the file: ', [$filePath]);
+
+                $partner = $this->partnerRepository->get($file->getPartnerName(), $file->getPartnerCountryCode());
+
                 $products = $this->csvRepository->getProducts($partner, $filePath);
 
+                $start = microtime(true);
+
                 $this->productRepository->importProducts($partner, $products);
-                $this->logger->info('Products are imported: ', [$products->count()]);
+
+                $end  = microtime(true);
+                $time = round(($end - $start) * 1000);
+
+                $this->logger->info($products->count() . ' products are imported in ' . $time . ' msec');
             }
 
             $end  = microtime(true);
