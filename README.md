@@ -23,16 +23,24 @@ The database is MySQL, and the following file describes the definitions of the t
 
 ## Install the Application
 
-Run this command from the directory in which you want to install the application.
+To run the application in development, you have to use `docker-compose` to run the app with `docker`:
+
+```bash
+docker-compose up -d
+```
+
+Run this command from CLI mode of the docker-alpine container from the directory in which you want to install the application.
 
 ```bash
 composer install
 ```
 
-To run the application in development, you can use `docker-compose` to run the app with `docker`:
+## Run unit tests
+
+Run this command from CLI mode of the docker-alpine container to run the unit tests.
 
 ```bash
-docker-compose up -d
+composer test
 ```
 
 ## Usage
@@ -45,13 +53,7 @@ This behaviour is available through http://localhost:8080
 
 This behaviour is available through http://localhost:8080/loadfile.php . The partners have to be represented and the product table should be empty in the database. 
 
-## Run unit tests
-
-```bash
-composer test
-```
-
 ## Possible improvements
 * Introduce validation for description value using regular expression or DOM Parser
-* Introduce Load Data Solution and replace it with the Multi Insert Version, because this version would be the most optimized considering running time. 
+* Introduce Load Data Solution and replace the Multi Insert Version, because this Load Data version would be the most optimized considering running time. 
 Based on my research the mysql operations would be 10x time faster. Some overhead is required (CSV writing) but probably the entire benefit would be significant.
