@@ -37,7 +37,8 @@
         }
     },
     "scripts": {
-        "start": "php -S localhost:8080 -t public",
-        "test": "phpunit"
+        "test": "phpunit --configuration phpunit.xml",
+        "display-coverage": "phpunit --coverage-text --configuration phpunit.xml",
+        "html-coverage": "phpunit --coverage-html=coverage --configuration phpunit.xml"
     }
 }

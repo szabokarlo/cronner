@@ -43,6 +43,22 @@ Run this command from CLI mode of the docker-alpine container to run the unit te
 composer test
 ```
 
+## Run unit tests and show code coverage
+
+Run this command from CLI mode of the docker-alpine container to run the unit tests with code coverage displaying.
+
+```bash
+composer display-coverage
+```
+
+## Run unit tests and write code coverage to html
+
+Run this command from CLI mode of the docker-alpine container to run the unit tests and write code coverage to html.
+
+```bash
+composer html-coverage
+```
+
 ## Usage
 
 ### Multi Insert Version
