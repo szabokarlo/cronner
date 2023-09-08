@@ -9,5 +9,5 @@ metadata:
   #   backstage.io/techdocs-ref: dir:.
 spec:
   type: website
-  owner: szabokarlo@gmail.com
+  owner: team-A
   lifecycle: experimental
