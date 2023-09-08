@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: cronner
-  description: This is a cronner - modified
+  description: This is a cronner - modified 2
   # Example for optional annotations
   # annotations:
   #   github.com/project-slug: backstage/backstage
