@@ -9,5 +9,5 @@ metadata:
   #   backstage.io/techdocs-ref: dir:.
 spec:
   type: website
-  owner: [team-A, team-b@lastpass.com]
+  owner: team-A
   lifecycle: experimental
