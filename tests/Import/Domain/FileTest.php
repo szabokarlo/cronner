@@ -19,4 +19,26 @@ class FileTest extends TestCase
         $this->assertEquals('feed', $sut->getPartnerName());
         $this->assertEquals('bg', $sut->getPartnerCountryCode());
     }
+
+    public function testDifferentCountryCode()
+    {
+        $path = '/data';
+        $fileNameWithExtension = 'partnername_ro.csv';
+        $extension = 'csv';
+        $sut = new File($path, $fileNameWithExtension, $extension);
+
+        $this->assertEquals('partnername', $sut->getPartnerName());
+        $this->assertEquals('ro', $sut->getPartnerCountryCode());
+    }
+
+    public function testPartnerNameWithUnderscore()
+    {
+        $path = '/data';
+        $fileNameWithExtension = 'partner_name_hu.csv';
+        $extension = 'csv';
+        $sut = new File($path, $fileNameWithExtension, $extension);
+
+        $this->assertEquals('partner_name', $sut->getPartnerName());
+        $this->assertEquals('hu', $sut->getPartnerCountryCode());
+    }
 }
